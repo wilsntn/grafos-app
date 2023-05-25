@@ -1,0 +1,42 @@
+version: '3.8'
+
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: Dockerfile
+    working_dir: /usr/app/
+    container_name: grafos_api
+    ports:
+      - 8008:8000
+    command: bash -c 'while !</dev/tcp/postgres/5432; do sleep 1; done; uvicorn src.main:app --reload --host 0.0.0.0'
+    volumes:
+      - .:/usr/app/
+    environment:
+      DATABASE_URL: postgresql://postgres:postgres@postgres:5432/grafos
+      WATCHFILES_FORCE_POLLING: true
+    depends_on:
+      - 'postgres'
+    networks:
+      - grafos-backend
+
+  postgres:
+    image: postgres:15-alpine
+    container_name: grafos_postgres
+    volumes:
+      - db-data:/db/postgres
+    ports:
+      - 5432:5432
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: grafos
+    networks:
+      - grafos-backend
+
+volumes:
+  db-data:
+
+networks:
+  grafos-backend:
+    driver: bridge
