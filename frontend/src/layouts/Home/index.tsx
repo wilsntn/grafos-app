@@ -124,7 +124,7 @@ export default function Layout({ children }: any) {
               alt='logo-grafo'
               onClick={() => router.push('/')}
             />
-            <h1 className='text-white'>Nome do software</h1>
+            <h1 className='text-white'>Grafos App</h1>
             <Image
               className='w-9 h-9 hover:cursor-pointer'
               src={menuIcon}
