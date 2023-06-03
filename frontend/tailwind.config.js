@@ -15,9 +15,10 @@ module.exports = {
       },
     },
     colors: {
-      'primary': '#444444',
-      'white': '#ffffff',
-      'secondary': '#A9A8A8',
+      primary: '#444444',
+      white: '#ffffff',
+      secondary: '#A9A8A8',
+      third: '#B1ABAB',
     },
   },
   plugins: [],
