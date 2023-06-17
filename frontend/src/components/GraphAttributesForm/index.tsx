@@ -7,48 +7,48 @@ export function GraphAttributesForm() {
         {/* first form to handle the general properties of the graph */}
         <fieldset className="w-2/4 flex flex-col gap-3">
           <label
-            className="text-[#025E7B]"
+            className="text-label"
             htmlFor=""
           >
             DNV
           </label>
           <input
-            className="w-full border-b-2 border-[#02394A] text-xs"
+            className="w-full border-b-2 border-inputBorder text-xs p-1"
             type="text"
             placeholder="Distância nome do vértice"
           />
           <label
-            className="text-[#025E7B]"
+            className="text-label"
             htmlFor=""
           >
             Peso aresta
           </label>
           <input
-            className="w-full border-b-2 border-[#02394A] text-xs"
+            className="w-full border-b-2 border-inputBorder text-xs p-1"
             type="text"
             placeholder="Peso da aresta"
           />
         </fieldset>
         <fieldset className="w-2/4 flex flex-col gap-3">
           <label
-            className="text-[#025E7B]"
+            className="text-label"
             htmlFor=""
           >
             Peso vértice
           </label>
           <input
-            className="w-full border-b-2 border-[#02394A] text-xs"
+            className="w-full border-b-2 border-inputBorder text-xs p-1"
             type="text"
             placeholder="Peso dos vértices"
           />
           <label
-            className="text-[#025E7B]"
+            className="text-label"
             htmlFor=""
           >
             Cor do vértice
           </label>
           <input
-            className="w-full border-b-2 border-[#02394A] text-xs"
+            className="w-full border-b-2 border-inputBorder text-xs p-1"
             type="text"
             placeholder="Cores dos vértices"
           />

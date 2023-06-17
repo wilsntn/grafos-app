@@ -1,34 +1,48 @@
-import {
-  ControlsContainer,
-  FullScreenControl,
-  SearchControl,
-  SigmaContainer,
-  ZoomControl,
-} from '@react-sigma/core';
+'use client';
 
-export function Graph() {
+import dynamic from 'next/dynamic';
+import Graph, { MultiDirectedGraph } from 'graphology';
+import { random } from 'graphology-layout';
+
+const SigmaContainer = dynamic(
+  import('@react-sigma/core').then((mod) => mod.SigmaContainer),
+  { ssr: false }
+);
+const ControlsContainer = dynamic(
+  import('@react-sigma/core').then((mod) => mod.ControlsContainer),
+  { ssr: false }
+);
+const FullScreenControl = dynamic(
+  import('@react-sigma/core').then((mod) => mod.FullScreenControl),
+  { ssr: false }
+);
+const SearchControl = dynamic(
+  import('@react-sigma/core').then((mod) => mod.SearchControl),
+  { ssr: false }
+);
+
+const ZoomControl = dynamic(
+  import('@react-sigma/core').then((mod) => mod.ZoomControl),
+  { ssr: false }
+);
+
+interface IGraphProps {
+  graph: any;
+  setGraph: () => void;
+}
+
+export function GraphComponent(props: IGraphProps) {
+  const newGraph = Graph.from(props.graph);
+  random.assign(newGraph);
+  newGraph.forEachNode((node) => {
+    newGraph.setNodeAttribute(node, 'size', 10);
+    newGraph.setNodeAttribute(node, 'color', 'red');
+  });
+  // console.log(newGraph);
   return (
     <SigmaContainer
-      graph={graph}
-      style={{ height: '500px' }}
-      settings={{
-        nodeProgramClasses: { image: getNodeProgramImage() },
-        defaultNodeType: 'image',
-        defaultEdgeType: 'arrow',
-        labelDensity: 0.07,
-        labelGridCellSize: 60,
-        labelRenderedSizeThreshold: 15,
-        labelFont: 'Lato, sans-serif',
-        zIndex: true,
-      }}
-    >
-      <ControlsContainer position={'bottom-right'}>
-        <ZoomControl />
-        <FullScreenControl />
-      </ControlsContainer>
-      <ControlsContainer position={'top-right'}>
-        <SearchControl style={{ width: '200px' }} />
-      </ControlsContainer>
-    </SigmaContainer>
+      style={{ height: '100%', width: '100%' }}
+      graph={newGraph}
+    />
   );
 }
