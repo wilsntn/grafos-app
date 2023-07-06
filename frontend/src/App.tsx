@@ -1,12 +1,8 @@
-function App() {
+import { normalRoutes } from './router';
+import { RouterProvider } from 'react-router-dom';
 
-  return (
-    <>
-     <h1 className="text-3xl h-screen font-bold bg-orange-600 underline">
-      Hello Baga!
-    </h1>
-    </>
-  )
+function App() {
+  return <RouterProvider router={normalRoutes}></RouterProvider>;
 }
 
-export default App
+export default App;
