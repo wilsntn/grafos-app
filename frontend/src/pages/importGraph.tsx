@@ -1,13 +1,11 @@
 import { GraphComponent } from '@/components/Graph';
 import { GraphAttributesForm } from '@/components/GraphAttributesForm';
 import { UploadIcon } from '@/components/UploadIcon';
-import { IGraphConverterResponse } from '@/types/types';
 import { graphConverter } from '@/utils/api';
-import { graphHandler } from '@/utils/graphHandler';
-import Graph, { MultiDirectedGraph } from 'graphology';
+import Graph from 'graphology';
 import { ChangeEvent, useRef, useState } from 'react';
-import { useForm } from 'react-hook-form';
 import { useMutation } from 'react-query';
+import { random } from 'graphology-layout';
 
 interface IGraphFile {
   graph: File;
@@ -24,30 +22,26 @@ interface ITemporaryGraph {
 }
 
 export default function ImportGraph() {
-  //setar o meu react-hook-form para ler um arquivo
-  //setar meu react-query para fazer a chamada na api e retornar o grafo
-  //passar o valor do meu estado grafo para o componentes responsável por renderizar ele
-  //passar meu setGraph para dentro do meu formulário, bem como os métodos necessário do react-hook-form como props
-  const [graph, setGraph] = useState<any>();
+  const [graph, setGraph] = useState<Graph>();
   const [fileGraph, setFileGraph] = useState<File>();
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
   const { mutate } = useMutation(
     (fileGraph: FormData) => graphConverter(fileGraph),
     {
       onSuccess(graph: Graph) {
-        setGraph(graph);
+        const newGraph = Graph.from(graph);
+        random.assign(newGraph);
+        newGraph.forEachNode((node) => {
+          newGraph.setNodeAttribute(node, 'size', 10);
+          newGraph.setNodeAttribute(node, 'color', 'red');
+        });
+        setGraph(newGraph);
       },
       onError(error) {
         console.log(error);
       },
     }
   );
-  const { register, handleSubmit } = useForm<IGraphFile>();
-
-  function setTxtGraphData() {
-    //chama o service
-    //seta o estado do grafo
-  }
 
   function handleFileGraphUpload() {
     hiddenFileInput.current?.click();
@@ -60,10 +54,6 @@ export default function ImportGraph() {
     const data = new FormData();
     data.append('file', event.target.files[0]);
     mutate(data);
-  }
-
-  function submitGraphFile(values: any) {
-    const formData = new FormData();
   }
   return (
     <div className="flex w-screen h-screen">

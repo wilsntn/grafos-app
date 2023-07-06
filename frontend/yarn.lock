@@ -204,6 +204,18 @@
   resolved "https://registry.yarnpkg.com/@react-sigma/core/-/core-3.4.0.tgz#6da4b09d823b3520feb5948d6ca195843b770b8b"
   integrity sha512-IfP3tMqYHgdrTG4Pc3xqAb8xqwScMjQfhAfLt1yGNiBPaFuunxGOmDEZ8Q6/DQMqkkTksxq4C30W3C7aRC42Tg==
 
+"@react-sigma/core@^3.4.2":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/@react-sigma/core/-/core-3.4.2.tgz#36b5d1f78aef1a0a411fbb886bff148d8513e90c"
+  integrity sha512-SJ3y1LcHUj1mAsgmmZ1P0DyKtI6cdotJi5LUxfHWNPPnFY0WuTmEgcm82ESexYGcmFm95Bh7+aYYqenZvml8fQ==
+
+"@react-sigma/layout-core@^3.4.2":
+  version "3.4.2"
+  resolved "https://registry.yarnpkg.com/@react-sigma/layout-core/-/layout-core-3.4.2.tgz#766993a9431ae476065e3147bbd30f5b9f341632"
+  integrity sha512-pf3jiLeHV4C2kFmAIo2T6klbyE9+r00kcRu45yLQ3J4ltPsrcgQAP78ykZPkzZexZzJ4Vumlv4vXhlvOqmeM4Q==
+  dependencies:
+    "@react-sigma/core" "^3.4.2"
+
 "@rushstack/eslint-patch@^1.1.3":
   version "1.3.0"
   resolved "https://registry.yarnpkg.com/@rushstack/eslint-patch/-/eslint-patch-1.3.0.tgz#f5635b36fc0dad96ef1e542a302cd914230188c0"

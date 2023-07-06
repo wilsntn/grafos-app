@@ -1,8 +1,5 @@
-'use client';
-
 import dynamic from 'next/dynamic';
-import Graph, { MultiDirectedGraph } from 'graphology';
-import { random } from 'graphology-layout';
+import Graph from 'graphology';
 
 const SigmaContainer = dynamic(
   import('@react-sigma/core').then((mod) => mod.SigmaContainer),
@@ -20,29 +17,32 @@ const SearchControl = dynamic(
   import('@react-sigma/core').then((mod) => mod.SearchControl),
   { ssr: false }
 );
-
 const ZoomControl = dynamic(
   import('@react-sigma/core').then((mod) => mod.ZoomControl),
   { ssr: false }
 );
+import '@react-sigma/core/lib/react-sigma.min.css';
 
 interface IGraphProps {
-  graph: any;
+  graph: Graph;
   setGraph: () => void;
 }
 
 export function GraphComponent(props: IGraphProps) {
-  const newGraph = Graph.from(props.graph);
-  random.assign(newGraph);
-  newGraph.forEachNode((node) => {
-    newGraph.setNodeAttribute(node, 'size', 10);
-    newGraph.setNodeAttribute(node, 'color', 'red');
-  });
-  // console.log(newGraph);
+  //subir esse lógica para a página de importar o grafo e manipular o objeto do grafo e deixar para o componente apenas para renderização do grafo
+
   return (
     <SigmaContainer
       style={{ height: '100%', width: '100%' }}
-      graph={newGraph}
-    />
+      graph={props.graph}
+    >
+      <ControlsContainer position={'bottom-right'}>
+        <ZoomControl />
+        <FullScreenControl />
+      </ControlsContainer>
+      <ControlsContainer position={'top-right'}>
+        <SearchControl style={{ width: '100px' }} />
+      </ControlsContainer>
+    </SigmaContainer>
   );
 }
