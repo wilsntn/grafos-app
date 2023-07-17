@@ -5,7 +5,7 @@ from fastapi import FastAPI
 from src.users.models import Base
 from src.database import engine
 from fastapi import FastAPI
-from fastapi.middleware.cors import CORSMiddleware
+from starlette.middleware.cors import CORSMiddleware
 
 Base.metadata.create_all(bind=engine)
 
@@ -23,7 +23,7 @@ origins = ["*"]
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=origins,
+    allow_origins=origins
     allow_credentials=False,
     allow_methods=["*"],
     allow_headers=["*"],
