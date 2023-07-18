@@ -6,6 +6,7 @@ import Graph from 'graphology';
 import { ChangeEvent, useRef, useState } from 'react';
 import { useMutation } from 'react-query';
 import { random } from 'graphology-layout';
+import { useGraph } from '@/hooks/graphHook';
 
 interface IGraphFile {
   graph: File;
@@ -22,7 +23,7 @@ interface ITemporaryGraph {
 }
 
 export default function ImportGraph() {
-  const [graph, setGraph] = useState<Graph>();
+  const { graphObject, setGraphObject } = useGraph();
   const [fileGraph, setFileGraph] = useState<File>();
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
   const { mutate } = useMutation(
@@ -35,7 +36,7 @@ export default function ImportGraph() {
           newGraph.setNodeAttribute(node, 'size', 10);
           newGraph.setNodeAttribute(node, 'color', 'red');
         });
-        setGraph(newGraph);
+        setGraphObject(newGraph);
       },
       onError(error) {
         console.log(error);
@@ -64,7 +65,7 @@ export default function ImportGraph() {
         </div>
         <div className="w-full min-h-screen flex flex-col justify-around items-center p-10">
           <GraphAttributesForm />
-          <GraphAttributesForm />
+          {/* <GraphAttributesForm /> */}
           <div
             onClick={handleFileGraphUpload}
             className="w-full h-16 flex items-center justify-around"
@@ -86,10 +87,10 @@ export default function ImportGraph() {
       <div className="w-4/6 h-full">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <div className="w-3/5 h-3/5 shadow-lg shadow-gray-400 rounded-3xl flex justify-center items-center">
-            {graph && (
+            {graphObject && (
               <GraphComponent
-                graph={graph}
-                setGraph={() => setGraph}
+                graph={graphObject}
+                setGraph={() => graphObject}
               />
             )}
           </div>
