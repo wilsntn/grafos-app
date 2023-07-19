@@ -16,6 +16,8 @@ export default {
       third: '#B1ABAB',
       label: '#025E7B',
       inputBorder: '#02394A',
+      buttonPrimary: '#0074D9',
+      buttonSecondary: '#A7C6E4',
     },
   },
   plugins: [],

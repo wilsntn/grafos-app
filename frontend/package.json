@@ -18,6 +18,8 @@
     "lodash": "^4.17.21",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "react-hook-form": "^7.45.2",
+    "react-input-color": "^4.0.1",
     "react-query": "^3.39.3",
     "react-router-dom": "^6.14.1",
     "sigma": "^3.0.0-alpha3"

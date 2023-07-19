@@ -139,7 +139,7 @@ export function SidebarMenu({ children }: any) {
   return (
     <div className="w-screen min-h-screen overflow-hidden flex ">
       {collapsed === true ? (
-        <aside className="w-80 min-h-screen bg-primary justify-between ">
+        <aside className="w-80 min-h-screen bg-primary justify-between xl:max-w-[20%]">
           <div className="w-full h-[10%] flex justify-between items-center p-2">
             <img
               className="w-9 h-9 hover:cursor-pointer"
