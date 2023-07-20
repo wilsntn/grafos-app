@@ -69,12 +69,7 @@ export function ImportGraph() {
       <div className="w-4/6 h-full">
         <div className="w-full h-full flex flex-col items-center justify-center">
           <div className="w-3/5 h-3/5 shadow-lg shadow-gray-400 flex justify-center items-center rounded-2xl">
-            {graphObject && (
-              <GraphComponent
-                graph={graphObject}
-                setGraph={() => graphObject}
-              />
-            )}
+            {graphObject && <GraphComponent graph={graphObject} />}
           </div>
           <div>teste</div>
         </div>

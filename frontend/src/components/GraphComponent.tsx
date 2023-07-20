@@ -8,11 +8,21 @@ import {
 import '@react-sigma/core/lib/react-sigma.min.css';
 import { useEffect, useState } from 'react';
 import { ChangeNodeAttributesModal } from './modals/ChangeNodeAttributesModal';
+import Graph from 'graphology';
+import { ChangeEdgeAttributesModal } from './modals/ChangeEdgeAttributes';
 
-export const GraphComponent = (props: any) => {
+interface IGraphProps {
+  graph: Graph;
+}
+
+export const GraphComponent = (props: IGraphProps) => {
   const [nodeFormModalStatus, setNodeFormModalStatus] =
     useState<boolean>(false);
+  const [edgeFormModalStatus, setEdgeFormModalStatus] =
+    useState<boolean>(false);
   const [currentNode, setCurrentNode] = useState<string>();
+  const [currentEdge, setCurrentEdge] = useState<string>();
+
   const GraphEvents: React.FC = () => {
     const registerEvents = useRegisterEvents();
 
@@ -25,17 +35,11 @@ export const GraphComponent = (props: any) => {
           setNodeFormModalStatus(true);
           event.preventSigmaDefault;
         },
-        doubleClickNode: (event) => {
+        clickEdge: (event) => {
+          setCurrentEdge(event.edge);
+          setEdgeFormModalStatus(true);
           event.preventSigmaDefault;
         },
-
-        // clickEdge: (event) =>
-        //   console.log(
-        //     'clickEdge',
-        //     event.event,
-        //     event.edge,
-        //     event.preventSigmaDefault
-        //   ),
         // enterEdge: (event) => console.log('enterEdge', event.edge),
         // leaveEdge: (event) => console.log('leaveEdge', event.edge),
         // // sigma kill
@@ -56,6 +60,7 @@ export const GraphComponent = (props: any) => {
       <SigmaContainer
         style={{ height: '98%', width: '98%' }}
         graph={props.graph}
+        settings={{ renderEdgeLabels: true, renderLabels: true }}
       >
         <ControlsContainer position={'bottom-right'}>
           <ZoomControl />
@@ -67,6 +72,11 @@ export const GraphComponent = (props: any) => {
         show={nodeFormModalStatus}
         setModalState={() => setNodeFormModalStatus(!nodeFormModalStatus)}
         node={currentNode}
+      />
+      <ChangeEdgeAttributesModal
+        show={edgeFormModalStatus}
+        setModalState={() => setEdgeFormModalStatus(!edgeFormModalStatus)}
+        edge={currentEdge}
       />
     </>
   );

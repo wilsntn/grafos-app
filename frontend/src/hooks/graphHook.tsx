@@ -9,7 +9,9 @@ interface IGraphContext {
 
 const initialContextValue = {
   graphObject: new Graph(),
-  setGraphObject: () => {},
+  setGraphObject: () => {
+    return;
+  },
 };
 
 interface IProps {
