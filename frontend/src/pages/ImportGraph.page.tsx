@@ -8,20 +8,6 @@ import { random } from 'graphology-layout';
 import { useGraph } from '../hooks/graphHook';
 import { graphConverter } from '../utils/api';
 
-interface IGraphFile {
-  graph: File;
-}
-
-interface ITemporaryGraph {
-  nodes: {
-    id: string;
-  }[];
-  edges: {
-    source: string;
-    target: string;
-  }[];
-}
-
 export function ImportGraph() {
   const { graphObject, setGraphObject } = useGraph();
   const [fileGraph, setFileGraph] = useState<File>();
@@ -66,7 +52,7 @@ export function ImportGraph() {
             onClick={handleFileGraphUpload}
             className="w-full h-16 flex items-center justify-around"
           >
-            <button className="w-1/4  h-3/4 bg-white rounded-2xl flex items-center justify-around p-1">
+            <button className="w-2/4  h-3/4 bg-white rounded-2xl flex items-center justify-around p-1 xl:w-1/3">
               importar grafo
               <UploadIcon classAtributtes="w-2/6 h-3/4" />
             </button>

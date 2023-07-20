@@ -11,6 +11,7 @@ interface IGeneralGraphAttributes {
 }
 
 export function GraphAttributesForm() {
+  //função para aplicar as novas propriedades no grafo e retornar o objeto que será setado no estado de grafo
   const { register, handleSubmit } = useForm<IGeneralGraphAttributes>();
   const { graphObject, setGraphObject } = useGraph();
   const [nodeColorPicker, setNodeColorPicker] = useState<Color>();
@@ -37,7 +38,6 @@ export function GraphAttributesForm() {
     }
 
     return;
-    //função para aplicar as novas propriedades no grafo e retornar o objeto que será setado no estado de grafo
   }
 
   return (
@@ -113,18 +113,18 @@ export function GraphAttributesForm() {
               initialValue="#ffffff"
               onChange={setEdgeColorPicker}
             ></InputColor>
-            <input
+            {/* <input
               {...register('verticeColor')}
               className="hidden"
               type="text"
               placeholder="Peso dos vértices"
-            />
+            /> */}
           </fieldset>
         </fieldset>
-        <fieldset className="w-full flex flex-col gap-3 items-center justify-center">
+        <fieldset className="w-full flex gap-3 items-center justify-start">
           <button
             type="submit"
-            className="bg-buttonPrimary hover:bg-buttonSecondary text-white font-bold py-2 px-4 border border-blue-700 rounded"
+            className="bg-applyButtonPrimary hover:bg-applyButtonSecondary text-white font-bold py-2 px-4 border border-blue-700 rounded ml-3"
           >
             aplicar
           </button>
