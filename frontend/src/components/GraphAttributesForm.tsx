@@ -89,17 +89,9 @@ export function GraphAttributesForm() {
             </label>
 
             <InputColor
-              initialValue="#ffffff"
+              initialValue="#808080"
               onChange={setNodeColorPicker}
             ></InputColor>
-
-            {/* <input
-              {...register('verticeColor')}
-              // className="w-full border-b-2 border-inputBorder text-xs p-1"
-              className="hidden"
-              type="text"
-              placeholder="Peso dos vértices"
-            /> */}
           </fieldset>
 
           <fieldset className="w-full flex flex-col gap-3">
@@ -110,15 +102,9 @@ export function GraphAttributesForm() {
               Cor das arestas
             </label>
             <InputColor
-              initialValue="#ffffff"
+              initialValue="#808080"
               onChange={setEdgeColorPicker}
             ></InputColor>
-            {/* <input
-              {...register('verticeColor')}
-              className="hidden"
-              type="text"
-              placeholder="Peso dos vértices"
-            /> */}
           </fieldset>
         </fieldset>
         <fieldset className="w-full flex gap-3 items-center justify-start">

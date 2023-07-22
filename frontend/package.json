@@ -12,6 +12,7 @@
   "dependencies": {
     "@react-sigma/core": "^3.4.2",
     "axios": "^1.4.0",
+    "file-saver": "^2.0.5",
     "graphology": "^0.25.1",
     "graphology-layout": "^0.6.1",
     "graphology-types": "^0.24.7",
@@ -27,6 +28,7 @@
   },
   "devDependencies": {
     "@types/axios": "^0.14.0",
+    "@types/file-saver": "^2.0.5",
     "@types/react": "^18.0.37",
     "@types/react-dom": "^18.0.11",
     "@types/react-query": "^1.2.9",
