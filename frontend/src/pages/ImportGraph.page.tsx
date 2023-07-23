@@ -14,7 +14,6 @@ export function ImportGraph() {
   const { graphObject, setGraphObject } = useGraph();
   const [fileGraph, setFileGraph] = useState<File>();
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
-  // const [sigma, setSigma] = useState<Sigma | null>(null);
   const [downloadGraphState, setDownloadGraphState] = useState<boolean>(false);
 
   const { mutate } = useMutation(
