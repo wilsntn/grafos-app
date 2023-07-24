@@ -31,6 +31,7 @@ export function GraphAttributesForm() {
 
       temporaryGraph.forEachEdge((edge) => {
         temporaryGraph.setEdgeAttribute(edge, 'weight', values.edgeWeight);
+        temporaryGraph.setEdgeAttribute(edge, 'size', values.edgeWeight);
         temporaryGraph.setEdgeAttribute(edge, 'color', values.edgesColor);
       });
       console.log(temporaryGraph);

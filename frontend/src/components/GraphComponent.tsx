@@ -105,7 +105,7 @@ export const GraphComponent = (props: IGraphProps) => {
       }
       console.log('retornando nada');
       return;
-    }, []);
+    }, [sigma]);
 
     useEffect(() => {
       //download the graph when the state variable changes to true
@@ -119,35 +119,76 @@ export const GraphComponent = (props: IGraphProps) => {
   };
 
   const GraphEvents: React.FC = () => {
+    const sigma = useSigma();
+    const [draggedNode, setDraggedNode] = useState<string | null>(null);
     const registerEvents = useRegisterEvents();
 
     useEffect(() => {
       // Register the events
       registerEvents({
         // node events
-        clickNode: (event) => {
+        doubleClickNode: (event) => {
           setCurrentNode(event.node);
           setNodeFormModalStatus(true);
-          event.preventSigmaDefault;
+          event.preventSigmaDefault();
         },
         clickEdge: (event) => {
           setCurrentEdge(event.edge);
           setEdgeFormModalStatus(true);
-          event.preventSigmaDefault;
+          event.preventSigmaDefault();
         },
 
-        // enterEdge: (event) => console.log('enterEdge', event.edge),
-        // leaveEdge: (event) => console.log('leaveEdge', event.edge),
-        // // sigma kill
-        // kill: () => console.log('kill'),
-        // resize: () => console.log('resize'),
-        // beforeRender: () => console.log('beforeRender'),
-        // afterRender: () => console.log('afterRender'),
-        // // sigma camera update
-        // updated: (event) =>
-        // console.log('updated', event.x, event.y, event.angle, event.ratio),
+        downNode: (event) => {
+          setDraggedNode(event.node);
+          sigma.getGraph().setNodeAttribute(event.node, 'highlighted', true);
+        },
+        mouseup: () => {
+          if (draggedNode) {
+            setDraggedNode(null);
+            sigma.getGraph().removeNodeAttribute(draggedNode, 'highlighted');
+          }
+        },
+        mousedown: () => {
+          // Disable the autoscale at the first down interaction
+          if (!sigma.getCustomBBox()) sigma.setCustomBBox(sigma.getBBox());
+        },
+        mousemove: (event) => {
+          if (draggedNode) {
+            // Get new position of node
+            const pos = sigma.viewportToGraph(event);
+            sigma.getGraph().setNodeAttribute(draggedNode, 'x', pos.x);
+            sigma.getGraph().setNodeAttribute(draggedNode, 'y', pos.y);
+
+            // Prevent sigma to move camera:
+            event.preventSigmaDefault();
+            event.original.preventDefault();
+            event.original.stopPropagation();
+          }
+        },
+        touchup: () => {
+          if (draggedNode) {
+            setDraggedNode(null);
+            sigma.getGraph().removeNodeAttribute(draggedNode, 'highlighted');
+          }
+        },
+        touchdown: () => {
+          // Disable the autoscale at the first down interaction
+          if (!sigma.getCustomBBox()) sigma.setCustomBBox(sigma.getBBox());
+        },
+        touchmove: (event) => {
+          if (draggedNode) {
+            // Get new position of node
+            const pos = sigma.viewportToGraph(event.touches[0]);
+            sigma.getGraph().setNodeAttribute(draggedNode, 'x', pos.x);
+            sigma.getGraph().setNodeAttribute(draggedNode, 'y', pos.y);
+
+            // Prevent sigma to move camera:
+            event.original.preventDefault();
+            event.original.stopPropagation();
+          }
+        },
       });
-    }, [registerEvents]);
+    }, [registerEvents, sigma, draggedNode]);
 
     return null;
   };

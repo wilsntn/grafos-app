@@ -1462,6 +1462,16 @@ graphemer@^1.4.0:
   resolved "https://registry.yarnpkg.com/graphemer/-/graphemer-1.4.0.tgz#fb2f1d55e0e3a1849aeffc90c4fa0dd53a0e66c6"
   integrity sha512-EtKwoO6kxCL9WO5xipiHTZlSzBm7WLT627TqC/uVRd0HKmq8NXyebnNYxDoBi7wt8eTWrUrKXCOVaFq9x1kgag==
 
+graphology-communities-louvain@^2.0.1:
+  version "2.0.1"
+  resolved "https://registry.yarnpkg.com/graphology-communities-louvain/-/graphology-communities-louvain-2.0.1.tgz#56636700912b75d25c6906e5162743792f5f0893"
+  integrity sha512-JxEH8uxao6FcWp3UXNDJIRjU3pamzp9aqIWgpfAqWE66aPwHeBIB39YnqTgbe4baUJRdpbcp1u8jJiYvojHGIQ==
+  dependencies:
+    graphology-indices "^0.17.0"
+    graphology-utils "^2.4.4"
+    mnemonist "^0.39.0"
+    pandemonium "^2.3.0"
+
 graphology-generators@^0.11.2:
   version "0.11.2"
   resolved "https://registry.yarnpkg.com/graphology-generators/-/graphology-generators-0.11.2.tgz#eff2c97e4f5bf401e86ab045470dded95f2ebe24"
@@ -1477,6 +1487,13 @@ graphology-indices@^0.17.0:
   dependencies:
     graphology-utils "^2.4.2"
     mnemonist "^0.39.0"
+
+graphology-layout-forceatlas2@^0.10.1:
+  version "0.10.1"
+  resolved "https://registry.yarnpkg.com/graphology-layout-forceatlas2/-/graphology-layout-forceatlas2-0.10.1.tgz#741842135609d82d12db5a5fdf74672062c28205"
+  integrity sha512-ogzBeF1FvWzjkikrIFwxhlZXvD2+wlY54lqhsrWprcdPjopM2J9HoMweUmIgwaTvY4bUYVimpSsOdvDv1gPRFQ==
+  dependencies:
+    graphology-utils "^2.1.0"
 
 graphology-layout@^0.6.1:
   version "0.6.1"
@@ -1510,7 +1527,7 @@ graphology-types@^0.24.7:
   resolved "https://registry.yarnpkg.com/graphology-types/-/graphology-types-0.24.7.tgz#7d630a800061666bfa70066310f56612e08b7bee"
   integrity sha512-tdcqOOpwArNjEr0gNQKCXwaNCWnQJrog14nJNQPeemcLnXQUUGrsCWpWkVKt46zLjcS6/KGoayeJfHHyPDlvwA==
 
-graphology-utils@^2.3.0, graphology-utils@^2.4.2, graphology-utils@^2.4.3, graphology-utils@^2.4.4, graphology-utils@^2.5.0:
+graphology-utils@^2.1.0, graphology-utils@^2.3.0, graphology-utils@^2.4.2, graphology-utils@^2.4.3, graphology-utils@^2.4.4, graphology-utils@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/graphology-utils/-/graphology-utils-2.5.2.tgz#4d30d6e567d27c01f105e1494af816742e8d2440"
   integrity sha512-ckHg8MXrXJkOARk56ZaSCM1g1Wihe2d6iTmz1enGOz4W/l831MBCKSayeFQfowgF8wd+PQ4rlch/56Vs/VZLDQ==
@@ -1876,7 +1893,7 @@ p-locate@^5.0.0:
   dependencies:
     p-limit "^3.0.2"
 
-pandemonium@^2.4.0:
+pandemonium@^2.3.0, pandemonium@^2.4.0:
   version "2.4.1"
   resolved "https://registry.yarnpkg.com/pandemonium/-/pandemonium-2.4.1.tgz#bd51ca72184c6ae135f9049a33c8605bfdb9574d"
   integrity sha512-wRqjisUyiUfXowgm7MFH2rwJzKIr20rca5FsHXCMNm1W5YPP1hCtrZfgmQ62kP7OZ7Xt+cR858aB28lu5NX55g==

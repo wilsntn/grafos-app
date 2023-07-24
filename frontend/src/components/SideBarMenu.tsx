@@ -15,7 +15,7 @@ type LinkItem = {
   text?: JSX.Element;
 };
 
-export function SidebarMenu({ children }: any) {
+export function SidebarMenu() {
   const [collapsed, setCollapsed] = useState<boolean>(true);
   const navigate = useNavigate();
   const location = useLocation();

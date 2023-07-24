@@ -8,11 +8,15 @@ import { random } from 'graphology-layout';
 import { useGraph } from '../hooks/graphHook';
 import { graphConverter } from '../utils/api';
 import { BsDownload } from 'react-icons/bs';
+import { LiaUsersSolid } from 'react-icons/lia';
 import { GraphLayoutForm } from '../components/GraphLayoutForm';
+import louvain from 'graphology-communities-louvain';
+import { CleanGraphButton } from '../components/CleanGraphButton';
+import forceAtlas2 from 'graphology-layout-forceatlas2';
 
 export function ImportGraph() {
   const { graphObject, setGraphObject } = useGraph();
-  const [fileGraph, setFileGraph] = useState<File>();
+  const [, setFileGraph] = useState<File>();
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
   const [downloadGraphState, setDownloadGraphState] = useState<boolean>(false);
 
@@ -41,6 +45,16 @@ export function ImportGraph() {
     const data = new FormData();
     data.append('file', event.target.files[0]);
     mutate(data);
+  }
+
+  function detectCommunities() {
+    const tempGraph = graphObject;
+    if (tempGraph) {
+      louvain.assign(tempGraph);
+      forceAtlas2.assign(tempGraph, 50);
+      return setGraphObject(tempGraph);
+    }
+    return;
   }
 
   return (
@@ -85,7 +99,7 @@ export function ImportGraph() {
               />
             )}
           </div>
-          <div className="mt-4">
+          <div className="mt-4 flex items-center justify-center gap-3">
             <button
               type="button"
               className="min-w-fit min-h-fit flex items-center justify-around gap-2 text-black bg-white shadow-lg shadow-gray-400 rounded-xl p-3 px-5"
@@ -94,6 +108,17 @@ export function ImportGraph() {
               baixar grafo
               <i>
                 <BsDownload color="black" />
+              </i>
+            </button>
+            <CleanGraphButton />
+            <button
+              type="button"
+              className="min-w-fit min-h-fit flex items-center justify-around gap-2 text-black bg-white shadow-lg shadow-gray-400 rounded-xl p-3 px-5"
+              onClick={detectCommunities}
+            >
+              detectar comunidades
+              <i>
+                <LiaUsersSolid color="black" />
               </i>
             </button>
           </div>

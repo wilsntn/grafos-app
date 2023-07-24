@@ -5,15 +5,16 @@ import { SlGraph } from 'react-icons/sl';
 import { PiGraphDuotone } from 'react-icons/pi';
 import { PiShareNetwork } from 'react-icons/pi';
 import { BiNetworkChart } from 'react-icons/bi';
-import Graph, { UndirectedGraph } from 'graphology';
+import Graph from 'graphology';
 import complete from 'graphology-generators/classic/complete';
-import { circlepack, circular, random } from 'graphology-layout';
+import { circlepack, random } from 'graphology-layout';
 import caveman from 'graphology-generators/community/caveman';
 import clusters from 'graphology-generators/random/clusters';
 import florentineFamilies from 'graphology-generators/social/florentine-families';
 import { BsDownload } from 'react-icons/bs';
 import { GraphAttributesForm } from '../components/GraphAttributesForm';
 import { GraphLayoutForm } from '../components/GraphLayoutForm';
+import { CleanGraphButton } from '../components/CleanGraphButton';
 
 export function GenerateGraph() {
   const { graphObject, setGraphObject } = useGraph();
@@ -65,7 +66,7 @@ export function GenerateGraph() {
                 size={40}
                 color="gray"
               />
-              completo
+              tipo 1
             </button>
           </div>
           <div className="w-full flex justify-center items-center">
@@ -77,7 +78,7 @@ export function GenerateGraph() {
                 size={40}
                 color="gray"
               />
-              comunidade
+              tipo 2
             </button>
           </div>
 
@@ -90,7 +91,7 @@ export function GenerateGraph() {
                 size={40}
                 color="gray"
               />{' '}
-              cluster
+              tipo 3
             </button>
           </div>
 
@@ -103,7 +104,7 @@ export function GenerateGraph() {
                 size={40}
                 color="gray"
               />
-              social
+              tipo 4
             </button>
           </div>
         </div>
@@ -125,7 +126,7 @@ export function GenerateGraph() {
               />
             )}
           </div>
-          <div className="mt-4">
+          <div className="mt-4 flex items-center justify-center gap-3">
             <button
               type="button"
               className="min-w-fit min-h-fit flex items-center justify-around gap-2 text-black bg-white shadow-lg shadow-gray-400 rounded-xl p-3 px-5"
@@ -136,6 +137,7 @@ export function GenerateGraph() {
                 <BsDownload color="black" />
               </i>
             </button>
+            <CleanGraphButton />
           </div>
         </div>
       </div>
