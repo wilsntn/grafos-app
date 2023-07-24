@@ -52,14 +52,14 @@ export function GenerateGraph() {
 
   return (
     <div className="flex w-screen h-screen">
-      <div className="w-1/3 h-screen bg-secondary xl:max-w-[30%]">
+      <div className="w-1/3 h-screen bg-secondary">
         <div className="mt-1 m-auto flex items-center justify-center">
           <h2 className="text-white m-auto">Gerar exemplos</h2>
         </div>
-        <div className="w-full grid grid-rows-2 grid-cols-2 gap-5 p-8 xl:p-10 xl:mt-10">
+        <div className="w-full grid grid-rows-2 grid-cols-2 gap-5 p-8 xl:p-3">
           <div className="w-full flex justify-center items-center">
             <button
-              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary xl:w-[45%]"
+              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary xl:w-[50%]"
               onClick={createCompleteGraph}
             >
               <SlGraph
@@ -71,7 +71,7 @@ export function GenerateGraph() {
           </div>
           <div className="w-full flex justify-center items-center">
             <button
-              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary xl:w-[45%]"
+              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary  xl:w-[50%]"
               onClick={createCommunityGraph}
             >
               <PiGraphDuotone
@@ -84,7 +84,7 @@ export function GenerateGraph() {
 
           <div className="w-full flex justify-center items-center">
             <button
-              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary xl:w-[45%]"
+              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary  xl:w-[50%]"
               onClick={createClusteredGraph}
             >
               <PiShareNetwork
@@ -97,7 +97,7 @@ export function GenerateGraph() {
 
           <div className="w-full flex justify-center items-center">
             <button
-              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary xl:w-[45%]"
+              className="w-[70%] h-20 flex flex-col items-center justify-around bg-white rounded-xl text-primary  xl:w-[50%]"
               onClick={createSocialGraph}
             >
               <BiNetworkChart
