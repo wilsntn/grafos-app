@@ -168,7 +168,7 @@ export function SidebarMenu() {
               ))}
             </ul>
           </nav>
-          <div className="w-80 h-[14%] mt-auto flex justify-center items-center bg-secondary"></div>
+          <div className="w-80 h-[14%] mt-auto flex justify-center items-center bg-primary"></div>
         </aside>
       ) : (
         <aside className="w-28 min-h-screen bg-primary justify-between ">
