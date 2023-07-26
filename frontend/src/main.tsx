@@ -4,6 +4,7 @@ import App from './App.tsx';
 import './index.css';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { GraphProvider } from './hooks/graphHook.tsx';
+import { MenuStateProvider } from './hooks/menuHook.tsx';
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -16,7 +17,9 @@ const queryClient = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={queryClient}>
     <GraphProvider>
-      <App />
+      <MenuStateProvider>
+        <App />
+      </MenuStateProvider>
     </GraphProvider>
   </QueryClientProvider>
 );

@@ -2,12 +2,13 @@ import { SlGraph } from 'react-icons/sl';
 import { GraphAttributesForm } from '../components/GraphAttributesForm';
 import { useGraph } from '../hooks/graphHook';
 import { GraphComponent } from '../components/GraphComponent';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { BsDownload } from 'react-icons/bs';
 import { CreateNodeModal } from '../components/modals/CreateNodeModal';
 import { CreateEdgeModal } from '../components/modals/CreateEdgeModal';
 import { LuSpline } from 'react-icons/lu';
 import { CleanGraphButton } from '../components/CleanGraphButton';
+import { useMenuState } from '../hooks/menuHook';
 
 export function CreateGraph() {
   const { graphObject } = useGraph();
@@ -16,6 +17,11 @@ export function CreateGraph() {
     useState<boolean>(false);
   const [createEdgeModalState, setCreateEdgeModalState] =
     useState<boolean>(false);
+  const { setMenuState } = useMenuState();
+
+  useEffect(() => {
+    setMenuState(false);
+  }, [setMenuState]);
   return (
     <div className="flex w-screen h-screen">
       <div className="w-1/3 h-screen bg-secondary xl:max-w-[30%]">

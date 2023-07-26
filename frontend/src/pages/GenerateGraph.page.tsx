@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { GraphComponent } from '../components/GraphComponent';
 import { useGraph } from '../hooks/graphHook';
 import { SlGraph } from 'react-icons/sl';
@@ -15,10 +15,12 @@ import { BsDownload } from 'react-icons/bs';
 import { GraphAttributesForm } from '../components/GraphAttributesForm';
 import { GraphLayoutForm } from '../components/GraphLayoutForm';
 import { CleanGraphButton } from '../components/CleanGraphButton';
+import { useMenuState } from '../hooks/menuHook';
 
 export function GenerateGraph() {
   const { graphObject, setGraphObject } = useGraph();
   const [downloadGraphState, setDownloadGraphState] = useState<boolean>(false);
+  const { setMenuState } = useMenuState();
 
   //criar as funções que vão gerar os grafos modelos
 
@@ -49,6 +51,10 @@ export function GenerateGraph() {
     random.assign(graph);
     setGraphObject(graph);
   }
+
+  useEffect(() => {
+    setMenuState(false);
+  }, [setMenuState]);
 
   return (
     <div className="flex w-screen h-screen">

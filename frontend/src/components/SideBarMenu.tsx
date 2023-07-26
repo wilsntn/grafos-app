@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { useNavigate, useLocation, Outlet } from 'react-router-dom';
 import { GraphIcon } from './Assets/GraphIcon';
 import { PlusIcon } from './Assets/PlusIcon';
@@ -7,6 +6,7 @@ import { Link } from 'react-router-dom';
 import graphLogo from '../assets/networking.svg';
 import menuIcon from '../assets/bars-sort.svg';
 import shortIcon from '../assets/bars.svg';
+import { useMenuState } from '../hooks/menuHook';
 
 type LinkItem = {
   href: string;
@@ -16,7 +16,7 @@ type LinkItem = {
 };
 
 export function SidebarMenu() {
-  const [collapsed, setCollapsed] = useState<boolean>(true);
+  const { menuState, setMenuState } = useMenuState();
   const navigate = useNavigate();
   const location = useLocation();
 
@@ -126,7 +126,7 @@ export function SidebarMenu() {
         <Link
           to={href}
           className={`group flex outline-none text-white p-2 ${
-            !collapsed && 'w-12'
+            !menuState && 'w-12'
           } hover:bg-white hover:text-primary cursor-pointer items-center gap-2 rounded-2xl ${activeClass}`}
         >
           {icon}
@@ -138,7 +138,7 @@ export function SidebarMenu() {
 
   return (
     <div className="w-screen min-h-screen overflow-hidden flex ">
-      {collapsed === true ? (
+      {menuState === true ? (
         <aside className="w-80 min-h-screen bg-primary justify-between xl:max-w-[20%]">
           <div className="w-full h-[10%] flex justify-between items-center p-2">
             <img
@@ -152,7 +152,7 @@ export function SidebarMenu() {
               className="w-9 h-9 hover:cursor-pointer"
               src={menuIcon}
               alt="icone-menu"
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => setMenuState(!menuState)}
             />
           </div>
           <nav className="h-[75%] mt-10">
@@ -177,7 +177,7 @@ export function SidebarMenu() {
               className="w-9 h-9 hover:cursor-pointer "
               src={shortIcon}
               alt="icone-menu"
-              onClick={() => setCollapsed(!collapsed)}
+              onClick={() => setMenuState(!menuState)}
             />
           </div>
           <nav className="h-[75%] mt-10">

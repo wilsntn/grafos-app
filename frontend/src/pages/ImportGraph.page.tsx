@@ -2,7 +2,7 @@ import { GraphComponent } from '../components/GraphComponent';
 import { GraphAttributesForm } from '../components/GraphAttributesForm';
 import { UploadIcon } from '../components/Assets/UploadIcon';
 import Graph from 'graphology';
-import { ChangeEvent, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 import { useMutation } from 'react-query';
 import { random } from 'graphology-layout';
 import { useGraph } from '../hooks/graphHook';
@@ -13,12 +13,14 @@ import { GraphLayoutForm } from '../components/GraphLayoutForm';
 import louvain from 'graphology-communities-louvain';
 import { CleanGraphButton } from '../components/CleanGraphButton';
 import forceAtlas2 from 'graphology-layout-forceatlas2';
+import { useMenuState } from '../hooks/menuHook';
 
 export function ImportGraph() {
   const { graphObject, setGraphObject } = useGraph();
   const [, setFileGraph] = useState<File>();
   const hiddenFileInput = useRef<HTMLInputElement | null>(null);
   const [downloadGraphState, setDownloadGraphState] = useState<boolean>(false);
+  const { setMenuState } = useMenuState();
 
   const { mutate } = useMutation(
     (fileGraph: FormData) => graphConverter(fileGraph),
@@ -52,10 +54,15 @@ export function ImportGraph() {
     if (tempGraph) {
       louvain.assign(tempGraph);
       forceAtlas2.assign(tempGraph, 50);
+      console.log(tempGraph.neighbors);
       return setGraphObject(tempGraph);
     }
     return;
   }
+
+  useEffect(() => {
+    setMenuState(false);
+  }, [setMenuState]);
 
   return (
     <div className="flex w-screen h-screen">

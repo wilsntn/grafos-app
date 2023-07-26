@@ -197,7 +197,11 @@ export const GraphComponent = (props: IGraphProps) => {
       <SigmaContainer
         style={{ height: '98%', width: '98%' }}
         graph={props.graph}
-        settings={{ renderEdgeLabels: true, renderLabels: true }}
+        settings={{
+          renderEdgeLabels: true,
+          renderLabels: true,
+          labelRenderedSizeThreshold: 0,
+        }}
       >
         <ControlsContainer position={'bottom-right'}>
           <ZoomControl />
