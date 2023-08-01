@@ -45,12 +45,12 @@ export function CreateEdgeModal({ show, setModalState }: ImodalProps) {
         show === true ? 'block' : 'hidden'
       }`}
     >
-      <div className="w-[35%] h-[60%] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2 lg:h-[80%] xl:h-[60%]">
-        <div className="flex flex-col justify-center items-center">
+      <div className="w-[35%] h-[60%] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
+        <div className="h-full flex flex-col justify-center items-center">
           <h3 className="m-auto text-primary">propriedades da aresta</h3>
           <form
             onSubmit={handleSubmit(submitEdgeAttributes)}
-            className="m-auto max-w-full min-h-fit flex flex-col bg-white rounded-2xl p-5 gap-5 mt-3 xl:max-w-[80%] "
+            className="m-auto max-w-full flex flex-col bg-white rounded-2xl p-5 gap-5 mt-3 xl:max-w-[80%] "
           >
             {/* fix the height of the form container to be % or something else to be dynamically adjust its size*/}
             {/* first form to handle the general properties of the graph */}

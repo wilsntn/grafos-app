@@ -56,7 +56,7 @@ export function ChangeNodeAttributesModal({
       }`}
     >
       <div className="w-[35%] h-[60%] fixed top-[50%] left-[50%] transform -translate-x-1/2 -translate-y-1/2">
-        <div className="flex flex-col justify-center items-center">
+        <div className="h-full flex flex-col justify-center items-center">
           <h3 className="m-auto text-primary">propriedades do vértice</h3>
           <form
             onSubmit={handleSubmit(submitNodeAttributes)}
